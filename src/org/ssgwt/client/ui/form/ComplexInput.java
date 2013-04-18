@@ -702,7 +702,7 @@ public abstract class ComplexInput<T> extends Composite
      * @author Alec Erasmus <alec.erasmus@a24group.com>
      * @since  1 March 2013
      *
-     * @param list of inputs
+     * @return list of inputs
      */
     public List<InputField> getInputFromInputList() {
         return this.inputFieldsList;
@@ -802,4 +802,9 @@ public abstract class ComplexInput<T> extends Composite
     public void setComplexAddButtonStyle(String complexAddButtonStyle) {
         this.complexAddButtonStyle = complexAddButtonStyle;
     }
+    
+    /**
+     * Remove all the registered handlers
+     */
+    public abstract void removeRegisteredHandlers();
 }

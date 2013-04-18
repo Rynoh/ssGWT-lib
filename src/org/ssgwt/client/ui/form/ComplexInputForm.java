@@ -129,7 +129,6 @@ public abstract class ComplexInputForm<OutterVO, InnerVO, TheField
         initWidget(complexInputForm);
         this.classLiteral = classLiteral;
         this.inputFieldCreator = inputFieldCreator;
-
     }
 
     /**
@@ -285,6 +284,7 @@ public abstract class ComplexInputForm<OutterVO, InnerVO, TheField
     @Override
     public void setValue(List<InnerVO> value) {
         this.innerVOs = value;
+        this.removeRegisteredHandlers();
         // Clear the field list
         fields.clear();
         if (value != null) {
@@ -600,5 +600,22 @@ public abstract class ComplexInputForm<OutterVO, InnerVO, TheField
             }
         }
         return false;
+    }
+    
+    /**
+     * Remove the registered handlers on the presenters
+     * 
+     * @author Ryno Hartzer <ryno.hartzer@a24group.com>
+     * @since  16 April 2013
+     */
+    public void removeRegisteredHandlers() {
+        // Before clearing all the fields we need to remove the registered
+        // handlers
+        if (this.fields != null) {
+            System.out.println("Removing handlers");
+            for (TheField field : this.fields) {
+                field.removeRegisteredHandlers();
+            }
+        }
     }
 }
